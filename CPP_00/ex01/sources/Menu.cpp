@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:25:20 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/02 11:26:24 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/02 12:27:19 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ void	Menu::setOption(void)
 	std::string	temp_option;
 
 	std::getline(std::cin, temp_option);
-	// std::cout << "[" + temp_option + "]" << std::endl;
-	
+	if (temp_option.compare("ADD") == 0 || temp_option.compare("add") == 0)
+		option = OPTION_ADD;
+	else if (temp_option.compare("EXIT") == 0 || temp_option.compare("exit") == 0)
+		option = OPTION_EXIT;
+	else if (temp_option.compare("SEARCH") == 0 || temp_option.compare("search") == 0)
+		option = OPTION_SEARCH;
+}
+
+void	Menu::executeOption()
+{
+	if (option == OPTION_EXIT)
+		exitPhoneBook();
+	else if (option == OPTION_ADD)
+		addContact();
+	else if (option == OPTION_SEARCH)
+		searchContact();
 }
