@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:20:50 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/03 15:01:26 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:06:13 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+# include <iomanip>
 
 # define TRUE	1
 # define FALSE	0

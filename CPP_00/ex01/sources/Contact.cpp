@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 11:02:52 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/03 15:07:54 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:25:06 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	Contact::setFirstName()
 {
 	std::cout << "Fisrt Name: ";
 	std::getline(std::cin, firstName);
-	std::cout << "getline = [" << firstName << "]" << std::endl;
 	if (!check_user_input(firstName))
 	{
 		std::cout << "Invalid Fisrt Name" << std::endl;
@@ -59,7 +58,7 @@ void	Contact::setPhoneNumber()
 
 void	Contact::setSecret()
 {
-	std::cout << "Phone Number: ";
+	std::cout << "Secret: ";
 	std::getline(std::cin, secret);
 	if (!check_user_input(secret))
 	{

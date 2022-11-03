@@ -1,5 +1,7 @@
 #include "../includes/PhoneBook.hpp"
 
+static void	printElement(Contact person, int index);
+
 void	PhoneBook::createContact()
 {
 	int	actualContact;
@@ -23,4 +25,38 @@ void	PhoneBook::createContact()
 			oldestContact = 0;
 	}
 	nbrContact += 1;
+}
+
+void	PhoneBook::searchContact() const
+{
+	int i = 0;
+
+	while (i < nbrContact)
+	{
+		printElement(contacts[i], i + 1);
+		i++;
+	}
+}
+
+static void	printElement(Contact person, int index)
+{
+	std::cout
+		<< std::setw(10)
+		<< index
+		<< std::left
+		<< std::setw(10)
+		<< " | "
+		<< std::left
+		<< person.getFisrtName()
+		<< std::setw(10)
+		<< " | "
+		<< std::left
+		<< person.getLastName()
+		<< std::setw(10)
+		<< " | "
+		<< std::left
+		<< person.getNickname()
+		<< std::setw(10)
+		<< " | "
+		<< std::endl;
 }

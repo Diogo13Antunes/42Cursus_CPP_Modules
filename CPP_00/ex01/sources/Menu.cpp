@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:25:20 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/03 15:04:24 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:28:31 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	Menu::setOption(void)
 		option = OPTION_EXIT;
 	else if (temp_option.compare("SEARCH") == 0 || temp_option.compare("search") == 0)
 		option = OPTION_SEARCH;
+	else
+		return ;
 }
 
 void	Menu::executeOption()
@@ -45,8 +47,8 @@ void	Menu::executeOption()
 		exitStatus = 0;
 	else if (option == OPTION_ADD)
 		book.createContact();
-	// else if (option == OPTION_SEARCH)
-	// 	searchContact();
+	else if (option == OPTION_SEARCH)
+		book.searchContact();
 }
 
 int	Menu::getExitStatus() const

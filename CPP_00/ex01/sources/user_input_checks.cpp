@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:21:07 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/03 16:08:41 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:14:55 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ int	check_user_input(std::string input)
 		return (FALSE);
 	if (is_only_white_charecters(input))
 		return (FALSE);
-	if (is_only_white_charecters(input))
-		return (FALSE);
-	std::cout << "Here" << std::endl;
 	return (TRUE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:19:36 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/03 15:01:58 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:43:23 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ class PhoneBook
 			nbrContact = 0;
 		}
 		~PhoneBook() {};
+		
 		void	createContact();
+		void	searchContact() const;
 
-		// Init PhoneBook
-		void	initPhoneBook();
+		// Printers
+		void	printAllContacts() const;
+		void	printOneContact(int index) const;
 };

@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:55:54 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/03 12:58:39 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:16:01 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int main(void)
 
 	while (mainMenu.getExitStatus())
 	{
-		system("clear");
 		mainMenu.printInitialMenu();
 		mainMenu.setOption();
 		mainMenu.executeOption();
