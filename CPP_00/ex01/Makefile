@@ -14,6 +14,7 @@ OBJ_PATH = ./objects
 
 SRC_NAME =	Contact.cpp				\
 			Menu.cpp				\
+			PhoneBook.cpp			\
 			user_input_checks.cpp	\
 			main.cpp
 
