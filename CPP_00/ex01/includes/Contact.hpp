@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:20:50 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/02 11:26:39 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/02 12:35:27 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	check_user_input(std::string input);
 class Contact
 {
 	private:
-		std::string	first_name;
-		std::string	last_name;
+		std::string	firstName;
+		std::string	lastName;
 		std::string	nickname;
-		std::string	phone_number;
+		std::string	phoneNumber;
 		std::string	secret;
 
 	public:
