@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:32:15 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/02 15:17:43 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/03 14:56:24 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,23 @@
 class Menu
 {
 	private:
-		int	option;
-		PhoneBook book;
+		int			exitStatus;
+		int			option;
+		PhoneBook	book;
 
 	public:
+
+		Menu();
 
 		// Setters
 		void	setOption(void);
 
+		// Getters
+		int	getExitStatus() const;
+
 		// Executers
 		void	executeOption();
 		void	addContact();
-		void	searchContact();
 		void	exitPhoneBook();
 
 		// Printers

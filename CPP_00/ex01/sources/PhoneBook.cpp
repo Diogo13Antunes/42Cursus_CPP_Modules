@@ -1,11 +1,6 @@
 #include "../includes/PhoneBook.hpp"
 
-PhoneBook::PhoneBook(): 
-	oldestContact(0), 
-	nbrContact(0)
-{}
-
-void	PhoneBook::addContact()
+void	PhoneBook::createContact()
 {
 	int	actualContact;
 

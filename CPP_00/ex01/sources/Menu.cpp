@@ -6,11 +6,15 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:25:20 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/02 12:27:19 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:04:24 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Menu.hpp"
+
+Menu::Menu():
+	exitStatus(1)
+{}
 
 void	Menu::printInitialMenu(void) const
 {
@@ -38,9 +42,14 @@ void	Menu::setOption(void)
 void	Menu::executeOption()
 {
 	if (option == OPTION_EXIT)
-		exitPhoneBook();
+		exitStatus = 0;
 	else if (option == OPTION_ADD)
-		addContact();
-	else if (option == OPTION_SEARCH)
-		searchContact();
+		book.createContact();
+	// else if (option == OPTION_SEARCH)
+	// 	searchContact();
+}
+
+int	Menu::getExitStatus() const
+{
+	return (exitStatus);
 }

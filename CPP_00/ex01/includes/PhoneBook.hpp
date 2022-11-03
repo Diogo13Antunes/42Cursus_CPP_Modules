@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:19:36 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/02 15:18:42 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:01:58 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ class PhoneBook
 		int		nbrContact;
 
 	public:
-
-		PhoneBook();
-
-		void	addContact();
+		PhoneBook()
+		{
+			oldestContact = 0;
+			nbrContact = 0;
+		}
+		~PhoneBook() {};
+		void	createContact();
 
 		// Init PhoneBook
 		void	initPhoneBook();

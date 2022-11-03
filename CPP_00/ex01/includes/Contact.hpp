@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:20:50 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/02 12:35:27 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:01:26 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@ class Contact
 
 	public:
 
-		// Class distructor
-		~Contact();
+		// Class constructor
+		Contact() {};
 		
+		// Class distructor
+		~Contact() {};
+
 		// Setters
 		void		setFirstName(void);
 		void		setLastName(void);
