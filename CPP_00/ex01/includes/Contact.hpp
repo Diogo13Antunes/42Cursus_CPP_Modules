@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:20:50 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/03 17:06:13 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:24:17 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ class Contact
 		void		setNickname(void);
 		void		setPhoneNumber(void);
 		void		setSecret(void);
-		
+
 		// Getters
 		std::string	getFisrtName() const;
 		std::string	getLastName() const;

@@ -6,52 +6,62 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:25:20 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/03 17:28:31 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:58:07 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Menu.hpp"
+#include <Menu.hpp>
 
 Menu::Menu():
 	exitStatus(1)
 {}
 
-void	Menu::printInitialMenu(void) const
+std::string	Menu::initial(void) const
 {
-	std::cout << "------------- Phone Book -------------" << std::endl;
-	std::cout << "ADD -> Adds a new contact" << std::endl;
-	std::cout << "SEARCH -> Searchs a specific contact" << std::endl;
-	std::cout << "EXIT -> Exit phone book" << std::endl;
-	std::cout << std::endl;
-	std::cout << "Option: ";
+	std::string os;
+	
+	// Terminal::clean();
+	os += "------------- Phone Book -------------\n";
+	os += "ADD -> Adds a new contact\n";
+	os += "SEARCH -> Searchs a specific contact\n";
+	os += "EXIT -> Exit phone book\n\n";
+	os += "Option: ";
+	return (os);
 }
 
 void	Menu::setOption(void)
 {
 	std::string	temp_option;
 
-	std::getline(std::cin, temp_option);
+	temp_option = Terminal::read("");
 	if (temp_option.compare("ADD") == 0 || temp_option.compare("add") == 0)
-		option = OPTION_ADD;
+		addContact();
 	else if (temp_option.compare("EXIT") == 0 || temp_option.compare("exit") == 0)
-		option = OPTION_EXIT;
+		exit();
 	else if (temp_option.compare("SEARCH") == 0 || temp_option.compare("search") == 0)
-		option = OPTION_SEARCH;
+		searchContact();
 	else
-		return ;
+		Terminal::clean();
 }
 
-void	Menu::executeOption()
+void	Menu::exit()
 {
-	if (option == OPTION_EXIT)
-		exitStatus = 0;
-	else if (option == OPTION_ADD)
-		book.createContact();
-	else if (option == OPTION_SEARCH)
-		book.searchContact();
+	exitStatus = 0;
 }
 
-int	Menu::getExitStatus() const
+void	Menu::addContact()
+{
+	Terminal::clean();
+	book.createContact();
+}
+
+void	Menu::searchContact()
+{
+	Terminal::clean();
+	book.searchContact();
+}
+
+int	Menu::run() const
 {
 	return (exitStatus);
 }

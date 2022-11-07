@@ -15,6 +15,7 @@ OBJ_PATH = ./objects
 SRC_NAME =	Contact.cpp				\
 			Menu.cpp				\
 			PhoneBook.cpp			\
+			Terminal.cpp			\
 			user_input_checks.cpp	\
 			main.cpp
 
@@ -30,7 +31,7 @@ $(NAME) : $(OBJS)
 
 $(OBJ_PATH)/%.o : $(SRC_PATH)/%.cpp
 	mkdir -p objects
-	$(CXX) -c $(CXXFLAGS) $(INCLUDES) $< -o $@
+	$(CXX) -c $(CXXFLAGS) $(INC) $< -o $@
 
 clean:
 	rm -rf $(OBJ_PATH)

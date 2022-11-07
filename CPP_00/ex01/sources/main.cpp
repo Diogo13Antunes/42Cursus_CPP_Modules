@@ -6,23 +6,23 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:55:54 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/03 17:16:01 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/04 13:23:31 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Menu.hpp"
 #include "../includes/Contact.hpp"
 #include <stdlib.h>
+#include <stdio.h>
 
 int main(void)
 {
-	Menu mainMenu;
+	Menu		menu;
 
-	while (mainMenu.getExitStatus())
+	while (menu.run())
 	{
-		mainMenu.printInitialMenu();
-		mainMenu.setOption();
-		mainMenu.executeOption();
+		Terminal::write(menu.initial());
+		menu.setOption();
 	}
 	return (0);
 }

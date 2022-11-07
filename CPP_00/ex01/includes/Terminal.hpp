@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Menu.hpp                                           :+:      :+:    :+:   */
+/*   Terminal.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 14:32:15 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/04 12:48:19 by dcandeia         ###   ########.fr       */
+/*   Created: 2022/11/04 11:55:35 by dcandeia          #+#    #+#             */
+/*   Updated: 2022/11/07 15:13:11 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,14 @@
 
 # include <string>
 # include <iostream>
+# include <iomanip>
+# include <cstdio>
 
-# include <Contact.hpp>
-# include <PhoneBook.hpp>
-# include <Terminal.hpp>
-
-
-# define WORD_EXIT		"EXIT"
-# define WORD_ADD		"ADD"
-# define WORD_SEARCH	"SEARCH"
-
-class Menu
+class Terminal
 {
-	private:
-		int			exitStatus;
-		PhoneBook	book;
-		Terminal	term;
-
 	public:
-
-		Menu();
-
-		// Setters
-		void	setOption(void);
-
-		// Getters
-		int		run() const;
-
-		// Executers
-		void	addContact();
-		void	searchContact();
-		void	exit();
-		void	exitPhoneBook();
-
-		// Printers
-		std::string	initial(void) const;
+		static void			write(std::string msg);
+		static void			clean();
+		static std::string	read(std::string msg);
+		static void			wait_enter();
 };
