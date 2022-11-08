@@ -1,4 +1,4 @@
-NAME = [PROGRAM NAME]
+NAME = bank
 
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -g -std=c++98
@@ -12,7 +12,8 @@ SRC_PATH = ./sources
 
 OBJ_PATH = ./objects
 
-SRC_NAME =	Account.cpp
+SRC_NAME =	Account.cpp	\
+			tests.cpp
 
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))
 
@@ -26,7 +27,7 @@ $(NAME) : $(OBJS)
 
 $(OBJ_PATH)/%.o : $(SRC_PATH)/%.cpp
 	mkdir -p objects
-	$(CXX) -c $(CXXFLAGS) $(INCLUDES) $< -o $@
+	$(CXX) -c $(CXXFLAGS) $(INC) $< -o $@
 
 clean:
 	rm -rf $(OBJ_PATH)
