@@ -24,7 +24,7 @@ $(NAME) : $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) $(INC) -o $(NAME)
 	@echo "\033[1;36m[COMPILED]\033[0m"
 
-$(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
+$(OBJ_PATH)/%.o : $(SRC_PATH)/%.cpp
 	mkdir -p objects
 	$(CXX) -c $(CXXFLAGS) $(INCLUDES) $< -o $@
 
