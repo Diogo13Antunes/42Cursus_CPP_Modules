@@ -39,7 +39,9 @@ void	PhoneBook::searchContact() const
 
 	if (nbrContact == 0)
 	{
+		Terminal::clean();
 		Terminal::write("There is no contacts in this PhoneBook!\n");
+		Terminal::wait_enter();
 		return ;
 	}
 	Terminal::write("---------------------- SEARCH ----------------------\n");
