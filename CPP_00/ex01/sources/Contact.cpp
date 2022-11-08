@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 11:02:52 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/04 11:24:03 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:58:13 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,50 @@
 
 void	Contact::setFirstName()
 {
-	std::cout << "Fisrt Name: ";
-	std::getline(std::cin, firstName);
+	firstName = Terminal::read("Fisrt Name: ");
 	if (!check_user_input(firstName))
 	{
-		std::cout << "Invalid Fisrt Name" << std::endl;
+		Terminal::write("Invalid First Name\n");
 		setFirstName();
 	}
 }
 
 void	Contact::setLastName()
 {
-	std::cout << "Last Name: ";
-	std::getline(std::cin, lastName);
+	lastName = Terminal::read("Last Name: ");
 	if (!check_user_input(lastName))
 	{
-		std::cout << "Invalid Last Name" << std::endl;
+		Terminal::write("Invalid Last Name\n");
 		setLastName();
 	}
 }
 
 void	Contact::setNickname()
 {
-	std::cout << "Nickname: ";
-	std::getline(std::cin, nickname);
+	nickname = Terminal::read("Nickname: ");
 	if (!check_user_input(nickname))
 	{
-		std::cout << "Invalid Nickname" << std::endl;
+		Terminal::write("Invalid Nickname\n");
 		setNickname();
 	}
 }
 
 void	Contact::setPhoneNumber()
 {
-	std::cout << "Phone Number: ";
-	std::getline(std::cin, phoneNumber);
+	phoneNumber = Terminal::read("Phone Number: ");
 	if (!check_user_input(phoneNumber))
 	{
-		std::cout << "Invalid Phone Number" << std::endl;
+		Terminal::write("Invalid Phone Number\n");
 		setPhoneNumber();
 	}
 }
 
 void	Contact::setSecret()
 {
-	std::cout << "Secret: ";
-	std::getline(std::cin, secret);
+	secret = Terminal::read("Secret: ");
 	if (!check_user_input(secret))
 	{
-		std::cout << "Invalid Secret" << std::endl;
+		Terminal::write("Invalid Secret\n");
 		setSecret();
 	}
 }

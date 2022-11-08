@@ -61,6 +61,7 @@ void	PhoneBook::searchContact() const
 
 static void	printContact(Contact cont)
 {
+	Terminal::clean();
 	Terminal::write("----------------------------------------------------\n");
 	Terminal::write("First Name:     ");
 	Terminal::write(cont.getFisrtName());

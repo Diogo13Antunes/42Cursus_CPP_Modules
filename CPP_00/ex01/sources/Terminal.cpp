@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:55:35 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/07 15:28:57 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:50:15 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ std::string	Terminal::read(std::string msg)
 	std::string	input;
 
 	Terminal::write(msg);
-	std::getline(std::cin, input);
-	std::cout << input << std::endl;
+	std::getline(std::cin >> std::ws, input);
 	return (input);
 }
 

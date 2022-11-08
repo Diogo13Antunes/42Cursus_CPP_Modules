@@ -6,12 +6,14 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:20:50 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/04 11:24:17 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:52:08 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACTS_HPP
 # define CONTACTS_HPP
+
+# include "Terminal.hpp"
 
 # include <string>
 # include <iostream>

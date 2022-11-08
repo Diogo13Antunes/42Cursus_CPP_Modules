@@ -6,7 +6,7 @@
 /*   By: dcandeia <dcandeia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:55:54 by dcandeia          #+#    #+#             */
-/*   Updated: 2022/11/04 13:23:31 by dcandeia         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:45:22 by dcandeia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int main(void)
 
 	while (menu.run())
 	{
+		Terminal::clean();
 		Terminal::write(menu.initial());
 		menu.setOption();
 	}
