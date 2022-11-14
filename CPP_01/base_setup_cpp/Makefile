@@ -1,7 +1,7 @@
 NAME = [PROGRAM NAME]
 
 CXX = g++
-CXXFLAGS = -Wall -Werror -Wextra -g -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -std=c++98
 RM = rm -f
 
 $(VERBOSE).SILENT:
