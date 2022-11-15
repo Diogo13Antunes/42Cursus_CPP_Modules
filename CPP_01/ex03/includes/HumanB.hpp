@@ -2,6 +2,7 @@
 
 #include "Weapon.hpp"
 #include <string>
+#include <iostream>
 
 class HumanB
 {
@@ -9,7 +10,9 @@ class HumanB
         void            attack(void) const;
         void            setName(std::string n);
         std::string     getName(void) const;
-        HumanB();
+        void            setWeapon(Weapon *newWeapon);
+        Weapon          *getWeapon(void) const;
+        HumanB(std::string name);
         ~HumanB();
 
     private:
