@@ -20,9 +20,9 @@ std::string	HumanB::getName(void) const
 	return (name);
 }
 
-void	HumanB::setWeapon(Weapon *newWeapon)
+void	HumanB::setWeapon(Weapon &newWeapon)
 {
-	weapon = newWeapon;
+	weapon = &newWeapon;
 }
 
 Weapon	*HumanB::getWeapon(void) const
@@ -32,7 +32,10 @@ Weapon	*HumanB::getWeapon(void) const
 
 void    HumanB::attack(void) const
 {
+	Weapon		*actualWeapon = getWeapon();
+	std::string	weaponType = actualWeapon->getType();
+
 	std::cout << name;
 	std::cout << "attacks with their";
-	std::cout << weapon->getType() << std::endl;
+	std::cout << weaponType << std::endl;
 }

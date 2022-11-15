@@ -10,9 +10,9 @@ class HumanA
         void            attack(void) const;
         void            setName(std::string n);
         std::string     getName(void) const;
-        void            setWeapon(Weapon *newWeapon);
+        void            setWeapon(Weapon &newWeapon);
         Weapon          *getWeapon(void) const;
-        HumanA(std::string name, Weapon w);
+        HumanA(std::string name, Weapon &w);
         ~HumanA();
 
     private:

@@ -10,7 +10,7 @@ class HumanB
         void            attack(void) const;
         void            setName(std::string n);
         std::string     getName(void) const;
-        void            setWeapon(Weapon *newWeapon);
+        void            setWeapon(Weapon &newWeapon);
         Weapon          *getWeapon(void) const;
         HumanB(std::string name);
         ~HumanB();
