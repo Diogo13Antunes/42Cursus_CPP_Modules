@@ -12,7 +12,9 @@ SRC_PATH = ./sources
 
 OBJ_PATH = ./objects
 
-SRC_NAME =	main.cpp
+SRC_NAME =	main.cpp		\
+			Terminal.cpp	\
+			Replacer.cpp
 
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))
 
