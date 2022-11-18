@@ -3,6 +3,11 @@
 #include <iostream>
 #include <string>
 
+#define COMPLAIN_DEBUG      "DEBUG"
+#define COMPLAIN_INFO       "INFO"
+#define COMPLAIN_WARNING    "WARNING"
+#define COMPLAIN_ERROR      "ERROR"
+
 #define NBR_COMPLAINS   4
 
 class Harl;
@@ -23,6 +28,7 @@ class Harl
         ~Harl(void);
 
     private:
+        void    print_befores(int index);
         void    debug(void);
         void    info(void);
         void    warning(void);
