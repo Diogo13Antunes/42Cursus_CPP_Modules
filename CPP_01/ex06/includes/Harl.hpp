@@ -28,7 +28,8 @@ class Harl
         ~Harl(void);
 
     private:
-        void    print_befores(int index);
+        int     getLevel(std::string level);
+        void     printBefores(int index);
         void    debug(void);
         void    info(void);
         void    warning(void);

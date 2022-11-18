@@ -45,27 +45,46 @@ void    Harl::error(void)
 
 void    Harl::complain(std::string level)
 {
-	for (int i = 0; i < NBR_COMPLAINS; i++)
+	switch (getLevel(level))
 	{
-		if (list[i].complain == level)
-		{
-			if (i == 3)
-				(this->*list[i].act)();
-			else
-				print_befores(i);
-			return ;
-		}
+		case  0:
+			printBefores(0);
+			break;
+		case  1:
+			printBefores(1);
+			break;
+		case  2:
+			printBefores(2);
+			break;
+		case  3:
+			printBefores(3);
+			break;
+		default:
+			sendMSG("[ Probably complaining about insignificant problems ]");
+			break;
 	}
-	sendMSG("[ Probably complaining about insignificant problems ]");
 }
 
-void	Harl::print_befores(int index)
+int	Harl::getLevel(std::string level)
+{
+	int i = 0;
+	for (i = 0; i < NBR_COMPLAINS; i++)
+	{
+		if (!level.compare(list[i].complain))
+			break ;
+	}
+	return (i);
+}
+
+void     Harl::printBefores(int index)
 {
 	int i;
+
 	for (i = index; i < NBR_COMPLAINS; i++)
 	{
 		(this->*list[i].act)();
-		std::cout << std::endl;
+		if (index > 0)
+			std::cout << std::endl;
 	}
 }
 
