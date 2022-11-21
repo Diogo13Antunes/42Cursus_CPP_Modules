@@ -8,25 +8,33 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int nbr_int)
 {
+	std::cout << "Int constructor called" << std::endl;
 	fixedPoint = (nbr_int * (int)(1<<fracBits));
 }
 
 Fixed::Fixed(const float nbr_float)
 {
-	fixedPoint = (nbr_float * (float)(1<<fracBits));
+	std::cout << "Float constructor called" << std::endl;
+	fixedPoint = roundf((float)nbr_float * (float)(1<<fracBits));
 }
 
 Fixed::Fixed(const Fixed &f)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->fixedPoint = f.getRawBits();
+	*this = f;
 }
 
 Fixed &Fixed::operator= (const Fixed &f)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	fixedPoint = f.getRawBits();
+	fixedPoint = f.fixedPoint;
 	return (*this);
+}
+
+std::ostream &operator<< (std::ostream &os, const Fixed &f)
+{
+	os << f.toFloat();
+	return (os);
 }
 
 Fixed::~Fixed()
@@ -50,14 +58,15 @@ float   Fixed::toFloat( void ) const
 {
 	float	result;
 
-	result = fixedPoint / (float)(1<<fracBits);
+	result = ((float)fixedPoint / (float)(1<<fracBits));
 	return (result);
 }
 
 int	Fixed::toInt(void) const
 {
-	float	result;
+	int	result;
 
-	result = fixedPoint / (int)(1<<fracBits);
+	// result = fixedPoint / (int)(1<<fracBits);
+	result = fixedPoint >> fracBits;
 	return (result);
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <cmath>
 
 class Fixed
 {
@@ -10,6 +11,7 @@ class Fixed
 
         float   toFloat( void ) const;
         int     toInt(void) const;
+
 
         Fixed &operator = (const Fixed &f);
         Fixed(const Fixed &f);
@@ -22,3 +24,5 @@ class Fixed
         int                 fixedPoint;
         static const int    fracBits = 8;
 };
+
+std::ostream &operator<< (std::ostream &os, const Fixed &f);
