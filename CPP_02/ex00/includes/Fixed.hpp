@@ -1,13 +1,19 @@
 #pragma once
 
+#include <iostream>
+
 class Fixed
 {
-public:
-    Fixed();
-    ~Fixed();
+    public:
+        int getRawBits(void) const;
+        void setRawBits(int const raw);
 
-private:
+        Fixed &operator = (const Fixed &f);
+        Fixed(const Fixed &f);
+        Fixed();
+        ~Fixed();
 
+    private:
+        int                 fixedPoint;
+        static const int    fracBits = 8;
 };
-
-#endif
