@@ -1,0 +1,36 @@
+- Increment and decrement tests:
+a: 0
+++a: 0.00390625
+a: 0.00390625
+a++: 0.00390625
+a: 0.0078125
+--a: 0.00390625
+a: 0.00390625
+a--: 0.00390625
+a: 0
+
+b is: 10.1016
+
+- Max and min tests:
+
+max test
+10.1016
+max test
+10.1016
+min test
+0.0078125
+min test
+0.0078125
+
+- Operations:
+
+a is 0.0078125 and b is 10.1016:
+*: 0.078125
+/: 1293
+-: -10.0938
++: 10.1094
+
+- Comparison tests: a is 25 and b is 10.1016:
+a is bigger
+a is bigger or equal to b
+a is not equal to b
