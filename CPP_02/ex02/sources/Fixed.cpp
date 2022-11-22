@@ -7,12 +7,12 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int nbr_int)
 {
-	fixedPoint = (nbr_int * (int)(1<<fracBits));
+	fixedPoint = (nbr_int * (int)(1 << fracBits));
 }
 
 Fixed::Fixed(const float nbr_float)
 {
-	fixedPoint = roundf((float)nbr_float * (float)(1<<fracBits));
+	fixedPoint = (int)roundf((float)nbr_float * (float)(1<<fracBits));
 }
 
 Fixed::Fixed(const Fixed &f)
@@ -25,28 +25,24 @@ Fixed::~Fixed()
 
 }
 
-Fixed	&Fixed::operator+(const Fixed &f)
+Fixed	Fixed::operator+(const Fixed &f) const
 {
-	this->fixedPoint += f.fixedPoint;
-	return (*this);
+	return Fixed (this->toFloat() + f.toFloat());
 }
 
-Fixed	&Fixed::operator-(const Fixed &f)
+Fixed	Fixed::operator-(const Fixed &f) const
 {
-	this->fixedPoint -= f.fixedPoint;
-	return (*this);
+	return Fixed (this->toFloat() - f.toFloat());
 }
 
-Fixed	&Fixed::operator*(const Fixed &f)
+Fixed	Fixed::operator*(const Fixed &f) const
 {
-	this->fixedPoint *= f.fixedPoint;
-	return (*this);
+	return Fixed (this->toFloat() * f.toFloat());
 }
 
-Fixed	&Fixed::operator/(const Fixed &f)
+Fixed	Fixed::operator/(const Fixed &f) const
 {
-	this->fixedPoint /= f.fixedPoint;
-	return (*this);
+	return Fixed (this->toFloat() / f.toFloat());
 }
 
 int	Fixed::operator>(const Fixed &f)
@@ -99,7 +95,7 @@ int	Fixed::operator!=(const Fixed &f)
 
 Fixed &Fixed::operator= (const Fixed &f)
 {
-	fixedPoint = f.fixedPoint;
+	this->fixedPoint = f.fixedPoint;
 	return (*this);
 }
 
@@ -112,7 +108,6 @@ Fixed Fixed::operator++()
 Fixed Fixed::operator++(int)
 {
 	Fixed temp(*this);
-
 	this->fixedPoint++;
 	return (temp);
 }
@@ -126,7 +121,6 @@ Fixed Fixed::operator--()
 Fixed Fixed::operator--(int)
 {
 	Fixed temp(*this);
-
 	this->fixedPoint--;
 	return (temp);
 }
@@ -142,16 +136,11 @@ int	Fixed::getRawBits(void) const
 	return (fixedPoint);
 }
 
-void Fixed::setRawBits(int const raw)
-{
-	fixedPoint = raw;
-}
-
 float   Fixed::toFloat( void ) const
 {
 	float	result;
 
-	result = ((float)fixedPoint / (float)(1<<fracBits));
+	result = (this->fixedPoint / (float)(1 << this->fracBits));
 	return (result);
 }
 
