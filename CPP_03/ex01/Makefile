@@ -13,6 +13,7 @@ SRC_PATH = ./sources
 OBJ_PATH = ./objects
 
 SRC_NAME =	ClapTrap.cpp	\
+			ScavTrap.cpp	\
 			main.cpp
 
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))
