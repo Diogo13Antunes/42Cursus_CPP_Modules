@@ -15,7 +15,7 @@ int main()
 
 	std::cout << std::endl;
 
-	std::cout << "Point 2 - " << pFind_0.getXFixedPoint() << " / " << pFind_0.getYFixedPoint() <<std::endl;
+	std::cout << "Point 1 - " << pFind_0.getXFixedPoint() << " / " << pFind_0.getYFixedPoint() <<std::endl;
 	if (bsp(p1, p2, p3, pFind_0) == true)
 		std::cout << "The point is inside the triangle!" << std::endl;
 	else
