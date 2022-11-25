@@ -1,4 +1,4 @@
-NAME = fixed_point_01
+NAME = fixed_point_02
 
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -std=c++98
