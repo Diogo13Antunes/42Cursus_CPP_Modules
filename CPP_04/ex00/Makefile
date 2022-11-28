@@ -1,7 +1,7 @@
 NAME = polymorphism
 
 CXX = g++
-CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -g -std=c++98
 RM = rm -f
 
 $(VERBOSE).SILENT:
@@ -12,7 +12,11 @@ SRC_PATH = ./sources
 
 OBJ_PATH = ./objects
 
-SRC_NAME =	[CPP FILES]
+SRC_NAME =	Animal.cpp		\
+			Cat.cpp			\
+			Dog.cpp			\
+			WrongCat.cpp	\
+			main.cpp
 
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))
 
