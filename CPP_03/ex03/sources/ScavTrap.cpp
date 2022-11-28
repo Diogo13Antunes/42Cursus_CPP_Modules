@@ -44,3 +44,8 @@ void    ScavTrap::guardGate(void)
 	std::cout << " entered in Gate Keeper mode.";
 	std::cout << std::endl;
 }
+
+int ScavTrap::getEnergyPoints(void)
+{
+	return (this->_energyPoints);
+}

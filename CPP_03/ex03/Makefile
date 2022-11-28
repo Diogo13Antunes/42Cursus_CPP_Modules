@@ -1,7 +1,7 @@
 NAME = diamondtrap
 
 CXX = g++
-CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -Wshadow -Wno-shadow -std=c++98
 RM = rm -f
 
 $(VERBOSE).SILENT:

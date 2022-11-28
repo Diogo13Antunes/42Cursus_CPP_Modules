@@ -1,4 +1,4 @@
-#include "FragTrap.hpp"
+#include <FragTrap.hpp>
 
 FragTrap::FragTrap(): ClapTrap()
 {
@@ -40,4 +40,14 @@ FragTrap &FragTrap::operator = (const FragTrap &src)
 void    FragTrap::highFivesGuys(void)
 {
 	std::cout << "Give me a Hight Five" << std::endl;
+}
+
+int	FragTrap::getHitPoints(void) const
+{
+	return (this->_hitPoints);
+}
+
+int FragTrap::getAttackDamage(void) const
+{
+	return (this->_attackDamage);
 }

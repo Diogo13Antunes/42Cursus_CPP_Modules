@@ -13,10 +13,12 @@ class ClapTrap
         
         ClapTrap &operator = (const ClapTrap &f);
 
-        ClapTrap(std::string &name);
+        ClapTrap(std::string name);
         ClapTrap(ClapTrap &c);
         ClapTrap();
         ~ClapTrap();
+
+        void    printStatus(void) const;
 
     protected:
         std::string _name;
