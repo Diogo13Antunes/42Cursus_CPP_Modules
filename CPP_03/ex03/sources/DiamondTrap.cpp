@@ -6,10 +6,11 @@ DiamondTrap::DiamondTrap(): ScavTrap(), FragTrap()
 }
 
 DiamondTrap::DiamondTrap(std::string &name):
-	ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), _name(name)
+	ClapTrap(name + "_clap_name"), ScavTrap(), FragTrap()
 {
 	ScavTrap	tempScavTrap;
 
+	this->_name = name;
 	this->_hitPoints = FragTrap::getHitPoints();
 	this->_attackDamage = FragTrap::getAttackDamage();
 	this->_energyPoints = tempScavTrap.getEnergyPoints();
@@ -24,4 +25,13 @@ DiamondTrap::~DiamondTrap()
 void	DiamondTrap::attack(const std::string &target)
 {
 	ScavTrap::attack(target);
+}
+
+void    DiamondTrap::whoAmI(void)
+{
+	std::cout << "==========================================" << std::endl;
+	std::cout << "Hello I have 2 names: " << std::endl;
+	std::cout << "Fisrt Name  = " << this->_name << std::endl;
+	std::cout << "Second Name = " << ClapTrap::_name << std::endl;
+	std::cout << "==========================================" << std::endl;
 }

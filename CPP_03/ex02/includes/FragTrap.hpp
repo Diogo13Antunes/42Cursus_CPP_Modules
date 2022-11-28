@@ -6,6 +6,10 @@ class FragTrap: public ClapTrap
 {
     public:
 
+        void    takeDamage(unsigned int amount);
+        void    beRepaired(unsigned int amount);
+        void    attack(const std::string &target);
+
         void    highFivesGuys(void);
 
         FragTrap &operator = (const FragTrap &src);

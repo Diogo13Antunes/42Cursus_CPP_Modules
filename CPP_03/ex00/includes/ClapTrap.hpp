@@ -11,6 +11,8 @@ class ClapTrap
         void    beRepaired(unsigned int amount);
         void    attack(const std::string &target);
         
+        void	printStatus(void) const;
+
         ClapTrap &operator = (const ClapTrap &f);
 
         ClapTrap(std::string &name);

@@ -8,6 +8,6 @@ int main(void)
 	dummy.printStatus();
 	dummy.attack("FL4K");
 	dummy.printStatus();
-	
+	dummy.whoAmI();
 	return (0);
 }

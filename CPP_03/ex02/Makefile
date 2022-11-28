@@ -13,7 +13,6 @@ SRC_PATH = ./sources
 OBJ_PATH = ./objects
 
 SRC_NAME =	ClapTrap.cpp	\
-			ScavTrap.cpp	\
 			FragTrap.cpp	\
 			main.cpp
 
