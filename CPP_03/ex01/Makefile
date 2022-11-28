@@ -1,4 +1,4 @@
-NAME = claptrap
+NAME = scavtrap
 
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -std=c++98
