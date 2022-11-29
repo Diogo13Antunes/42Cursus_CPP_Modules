@@ -15,7 +15,6 @@ OBJ_PATH = ./objects
 SRC_NAME =	Animal.cpp		\
 			Cat.cpp			\
 			Dog.cpp			\
-			WrongCat.cpp	\
 			Brain.cpp		\
 			main.cpp
 
