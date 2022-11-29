@@ -14,7 +14,7 @@ class Animal
 
         Animal(const Animal &src);
         Animal();
-        ~Animal();
+        virtual ~Animal();
 
     protected:
         std::string _type;

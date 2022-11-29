@@ -32,7 +32,17 @@ int main()
 	s->makeSound();
 	meta->makeSound();
 	std::cout << "=======================================" << std::endl;
-	
+
+
+	std::cout << std::endl;
+
+	std::cout << "=======================================" << std::endl;
+	delete meta;
+	delete i;
+	delete j;
+	delete s;
+	std::cout << "=======================================" << std::endl;
+
 	std::cout << std::endl;
 
 	return (0);
