@@ -11,13 +11,16 @@ Cat::Cat():
 Cat::Cat(const Cat &src):
 	Animal()
 {
+	this->_type = "Cat";
+	this->_brain = new Brain();
 	*this = src;
 	std::cout << "Cat Copy Constructor" << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &src)
 {
-	this->_type = src._type;
+	delete this->_brain;
+	this->_brain = new Brain(*src._brain);
 	std::cout << "Cat Copy Assignment" << std::endl;
 	return (*this);
 }
