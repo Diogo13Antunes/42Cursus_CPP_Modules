@@ -12,10 +12,12 @@ SRC_PATH = ./sources
 
 OBJ_PATH = ./objects
 
-SRC_NAME =	AMateria.cpp		\
-			Ice.cpp				\
-			Cure.cpp			\
-			main.cpp
+SRC_NAME =	Cure.cpp			\
+			main.cpp			\
+			Character.cpp		\
+			AMateria.cpp		\
+			MateriaSource.cpp	\
+			Ice.cpp
 
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))
 
@@ -32,6 +34,7 @@ $(OBJ_PATH)/%.o : $(SRC_PATH)/%.cpp
 	$(CXX) -c $(CXXFLAGS) $(INC) $< -o $@
 
 teste:
+	clear
 	make re
 	clear
 	./charecter

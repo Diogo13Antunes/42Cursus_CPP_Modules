@@ -1,7 +1,6 @@
 #pragma once
 
 #include <ICharacter.hpp>
-#include <AMateria.hpp>
 
 #define NBR_SLOTS 4
 
@@ -9,11 +8,22 @@ class Character: public ICharacter
 {
     public:
 
+        const std::string   &getName(void) const;
+        void                equip(AMateria *m);
+        void                unequip(int idx);
+        void                use(int idx, ICharacter &target);
 
-        Character(Character &c);
+        void                showInventory(void) const;
+
+        Character &operator=(const Character &src);
+
+        Character(const std::string &name);
+        Character(const Character &src);
         Character(void);
-        virtual ~Character(void);
+        ~Character(void);
 
     private:
-        AMateria    *inventory[NBR_SLOTS];
+        std::string _name;
+        AMateria    *_inventory[NBR_SLOTS];
+        int         _nbrMaterias;
 };

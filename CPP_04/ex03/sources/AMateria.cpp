@@ -1,4 +1,6 @@
-#include "AMateria.hpp"
+#include <AMateria.hpp>
+#include <ICharacter.hpp>
+
 
 AMateria::AMateria()
 {
@@ -33,5 +35,11 @@ const std::string	&AMateria::getType() const
 
 void	AMateria::use(ICharacter &target)
 {
-	std::cout << target.getName() << "used an Materia" << std::endl;
+	std::cout << target.getName() << " used an Materia" << std::endl;
+}
+
+AMateria *AMateria::clone(void) const
+{
+	AMateria *newMateria = NULL;
+	return (newMateria);
 }
