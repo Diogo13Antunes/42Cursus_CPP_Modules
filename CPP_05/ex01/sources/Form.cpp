@@ -1,39 +1,35 @@
 #include <Form.hpp>
 
-Form::Form(): _name("Form_Name"), _grade(1)
+Form::Form():
+	_name("Form_Name"), _signStatus(false), _gradeToSign(1), _gradeToExecute(1)
 {
-	std::cout << "Default Form Constructor" << std::endl;
+	// std::cout << "Default Form Constructor" << std::endl;
 }
 
-Form::Form(const std::string name, const int gradeToSign, const int gradeToExec)
+Form::Form(const std::string name, const int gradeToSign, const int gradeToExec):
+	_name(name), _signStatus(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExec)
 {
 	if (gradeToSign < 1 || gradeToExec < 1)
 		throw GradeTooHighException();
 	else if (gradeToSign > 150 || gradeToExec > 150)
 		throw GradeTooLowException();
-	else
-	{
-		_name = name;
-		_gradeToSign = gradeToSign;
-		_gradeToExecute = gradeToExec;
-		_signStatus = false;
-	}
-	std::cout << "Grade Form Constructor" << std::endl;
+	// std::cout << "Grade Form Constructor" << std::endl;
 }
 
-Form::Form(const Form &src)
+Form::Form(const Form &src):
+	_name(src._name), _gradeToSign(src._gradeToSign), _gradeToExecute(src._gradeToExecute)
 {
 	*this = src;
 }
 
 Form::~Form()
 {
-	std::cout << "Default Form Destructor" << std::endl;
+	// std::cout << "Default Form Destructor" << std::endl;
 }
 
 Form &Form::operator=(const Form &src)
 {
-	this->_grade = src._grade;
+	this->_signStatus = src.getSignStatus();
 	return (*this);
 }
 
@@ -47,40 +43,54 @@ const char *Form::GradeTooLowException::what(void) const throw()
 	return ("Grade is too Low");
 }
 
-int		Form::getGrade(void) const
-{
-	return (this->_grade);
-}
-
 const std::string	Form::getName(void) const
 {
 	return (this->_name);
 }
 
-void	Form::gradeIncrement(void)
+int	Form::getGradeToSign(void) const
 {
-	int temp = this->_grade - 1;
-
-	if (temp < 1)
-		throw GradeTooHighException();
-	else
-		this->_grade = temp;
+	return (this->_gradeToSign);
 }
 
-void	Form::gradeDecrement(void)
+int	Form::getGradeToExecute(void) const
 {
-	int temp = this->_grade + 1;
+	return (this->_gradeToExecute);
+}
 
-	if (temp > 150)
-		throw GradeTooLowException();
+bool	Form::getSignStatus(void) const
+{
+	return (this->_signStatus);
+}
+
+void	Form::beSigned(const Bureaucrat &bureaucrat)
+{
+	int	bGrade = bureaucrat.getGrade();
+
+	if (bGrade <= this->_gradeToSign)
+	{
+		this->_signStatus = true;
+		bureaucrat.signForm(this->_name, this->_signStatus);
+	}
 	else
-		this->_grade = temp;
+	{
+		bureaucrat.signForm(this->_name, this->_signStatus);
+		throw GradeTooLowException();
+	}
 }
 
 std::ostream    &operator<< (std::ostream &os, const Form &src)
 {
-	os << src.getName();
-	os << ", Form grade ";
-	os << src.getGrade();
+	os << "---------------------------------" << std::endl;
+	os << "Form Name      -> " << src.getName() << std::endl;
+	os << "Grade to Sign  -> " << src.getGradeToSign() << std::endl;
+	os << "Grade to Exec  -> " << src.getGradeToExecute() << std::endl;
+	os << "Sign Status    -> ";
+	if (src.getSignStatus())
+		os << "Signed";
+	else
+		os << "Not Signed";
+	os << std::endl;
+	os << "---------------------------------";
 	return (os);
 }

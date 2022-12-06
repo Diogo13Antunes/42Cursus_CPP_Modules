@@ -3,8 +3,7 @@
 #include <string>
 #include <iostream>
 
-#define HIGHEST_GRADE  1
-#define LOWEST_GRADE   150
+#include <Bureaucrat.hpp>
 
 class Form
 {
@@ -23,14 +22,16 @@ class Form
         };
 
         const std::string   getName(void) const;
-        const int           getGradeToSign(void) const;
-        const int           getGradeToExecute(void) const;
+        int                 getGradeToSign(void) const;
+        int                 getGradeToExecute(void) const;
         bool                getSignStatus(void) const;
+
+        void                beSigned(const Bureaucrat &bureaucrat);
 
         Form  &operator=(const Form &src);
 
         Form(const Form &src);
-        Form(const std::string name, const int grade);
+        Form(const std::string name, const int gradeToSign, const int gradeToExec);
         Form();
         virtual ~Form();
 

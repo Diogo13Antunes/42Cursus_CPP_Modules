@@ -28,6 +28,8 @@ class Bureaucrat
         void                gradeIncrement();
         void                gradeDecrement();
 
+        void                signForm(std::string formName, bool formStatus) const;
+
         Bureaucrat  &operator=(const Bureaucrat &src);
 
         Bureaucrat(const Bureaucrat &src);

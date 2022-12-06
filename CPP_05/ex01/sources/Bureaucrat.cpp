@@ -2,7 +2,7 @@
 
 Bureaucrat::Bureaucrat(): _name("Bureaucrat_Name"), _grade(1)
 {
-	std::cout << "Default Bureaucrat Constructor" << std::endl;
+	// std::cout << "Default Bureaucrat Constructor" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string name, const int grade):
@@ -14,17 +14,18 @@ Bureaucrat::Bureaucrat(const std::string name, const int grade):
 		throw GradeTooLowException();
 	else
 		_grade = grade;
-	std::cout << "Grade Bureaucrat Constructor" << std::endl;
+	// std::cout << "Grade Bureaucrat Constructor" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src)
+Bureaucrat::Bureaucrat(const Bureaucrat &src):
+	_name(src._name)
 {
 	*this = src;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Default Bureaucrat Destructor" << std::endl;
+	// std::cout << "Default Bureaucrat Destructor" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src)
@@ -71,6 +72,14 @@ void	Bureaucrat::gradeDecrement(void)
 		throw GradeTooLowException();
 	else
 		this->_grade = temp;
+}
+
+void	Bureaucrat::signForm(std::string formName, bool formStatus) const
+{
+	if (formStatus)
+		std::cout << this->_name << " signed " << formName << std::endl;
+	else
+		std::cout << this->_name << " couldn't sign " << formName << " because ";
 }
 
 std::ostream    &operator<< (std::ostream &os, const Bureaucrat &src)
