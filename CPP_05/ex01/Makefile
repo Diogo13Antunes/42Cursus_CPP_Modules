@@ -1,4 +1,4 @@
-NAME = [PROGRAM NAME]
+NAME = form
 
 CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -std=c++98
@@ -12,7 +12,9 @@ SRC_PATH = ./sources
 
 OBJ_PATH = ./objects
 
-SRC_NAME =	[CPP FILES]
+SRC_NAME =	Bureaucrat.cpp	\
+			Form.cpp		\
+			main.cpp
 
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))
 
