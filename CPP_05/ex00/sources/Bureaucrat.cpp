@@ -17,7 +17,8 @@ Bureaucrat::Bureaucrat(const std::string name, const int grade):
 	std::cout << "Grade Bureaucrat Constructor" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src)
+Bureaucrat::Bureaucrat(const Bureaucrat &src):
+	_name(src._name)
 {
 	*this = src;
 }
