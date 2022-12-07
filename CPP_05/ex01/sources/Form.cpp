@@ -67,14 +67,18 @@ void	Form::beSigned(const Bureaucrat &bureaucrat)
 {
 	int	bGrade = bureaucrat.getGrade();
 
-	if (bGrade <= this->_gradeToSign)
+	if (this->_signStatus)
+	{
+		bureaucrat.signForm(this->_name, this->_signStatus, "is already signed");
+	}
+	else if (bGrade <= this->_gradeToSign)
 	{
 		this->_signStatus = true;
-		bureaucrat.signForm(this->_name, this->_signStatus);
+		bureaucrat.signForm(this->_name, this->_signStatus, "");
 	}
 	else
 	{
-		bureaucrat.signForm(this->_name, this->_signStatus);
+		bureaucrat.signForm(this->_name, this->_signStatus, "");
 		throw GradeTooLowException();
 	}
 }

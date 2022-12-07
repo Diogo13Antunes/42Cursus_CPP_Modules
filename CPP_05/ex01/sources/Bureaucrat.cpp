@@ -74,10 +74,12 @@ void	Bureaucrat::gradeDecrement(void)
 		this->_grade = temp;
 }
 
-void	Bureaucrat::signForm(std::string formName, bool formStatus) const
+void	Bureaucrat::signForm(std::string formName, bool formStatus, std::string msg) const
 {
 	if (formStatus)
 		std::cout << this->_name << " signed " << formName << std::endl;
+	else if (msg.c_str() && formStatus)
+		std::cout << this->_name << " couldn't sign " << formName << " because " << msg << std::endl;
 	else
 		std::cout << this->_name << " couldn't sign " << formName << " because ";
 }
