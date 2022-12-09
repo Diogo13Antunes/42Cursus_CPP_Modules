@@ -17,6 +17,7 @@ SRC_NAME =	Bureaucrat.cpp				\
 			ShrubberyCreationForm.cpp	\
 			RobotomyRequestForm.cpp		\
 			PresidentialPardonForm.cpp	\
+			Interm.cpp					\
 			main.cpp
 
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))

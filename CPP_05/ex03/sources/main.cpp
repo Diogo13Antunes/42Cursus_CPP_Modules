@@ -3,10 +3,11 @@
 #include <ShrubberyCreationForm.hpp>
 #include <RobotomyRequestForm.hpp>
 #include <PresidentialPardonForm.hpp>
+#include <Interm.hpp>
 
-# define SHRUBBERY_FORM		"ShrubberyCreationForm"
-# define ROBOTOMY_FORM 		"RobotomyRequestForm"
-# define PRESIDENTIAL_FORM	"PresidentialPardonForm"
+# define SHRUBBERY_FORM		"shrubbery creation"
+# define ROBOTOMY_FORM 		"robotomy request"
+# define PRESIDENTIAL_FORM	"presidential pardon"
 
 /*
 
@@ -39,28 +40,6 @@ Bureaucrat *createBureaucrat(std::string name, int grade)
 	return (newBureaucrat);
 }
 
-AForm	*createForm(std::string target, std::string specifier)
-{
-	AForm	*newForm = NULL;
-
-	try
-	{
-		if (specifier.compare(SHRUBBERY_FORM) == 0)
-			newForm = new ShrubberyCreationForm(target);
-		else if (specifier.compare(ROBOTOMY_FORM) == 0)
-			newForm = new RobotomyRequestForm(target);
-		else if (specifier.compare(PRESIDENTIAL_FORM) == 0)
-			newForm = new PresidentialPardonForm(target);
-		else
-			return (newForm);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	return (newForm);
-}
-
 void	test1(const Bureaucrat *bureaucrat, AForm *form)
 {
 	try
@@ -85,11 +64,17 @@ void	test1(const Bureaucrat *bureaucrat, AForm *form)
 
 int main()
 {
-	Bureaucrat *b = createBureaucrat("Bot", 100);
+	Interm	maker;
+	Bureaucrat *b = createBureaucrat("Bot", 150);
 
-	AForm *Shrubbery = createForm("Teste", SHRUBBERY_FORM);
-	AForm *Robotomy = createForm("Teste", ROBOTOMY_FORM);
-	AForm *Presidential = createForm("Teste", PRESIDENTIAL_FORM);
+	AForm *Shrubbery = maker.makeForm(SHRUBBERY_FORM, "Teste");
+	AForm *Robotomy = maker.makeForm(ROBOTOMY_FORM, "Teste");
+	AForm *Presidential = maker.makeForm(PRESIDENTIAL_FORM, "Teste");
+
+	AForm *teste = maker.makeForm("Teste", "Teste");
+
+	if (teste)
+		std::cout << teste->getName() << std::endl;
 
 	if (!b || !Shrubbery || !Robotomy || !Presidential)
 	{
