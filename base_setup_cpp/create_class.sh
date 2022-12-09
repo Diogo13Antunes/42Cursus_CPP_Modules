@@ -1,31 +1,51 @@
-cd includes
-touch $1.hpp
+if [ $# -eq 0 ]
+	then
+		printf "Please provide the name of the class\n"
+		printf "Usage: ./$0 [CLASS_NAME]\n"
+fi 
 
-echo "#pragma once" >> $1.hpp
-echo "" >> $1.hpp
-echo "class $1" >> $1.hpp
-echo "{" >> $1.hpp
-echo "	public:" >> $1.hpp
-echo "		$1 &operator=(const $1 &src);" >> $1.hpp
-echo "		$1(const $1 &src);" >> $1.hpp
-echo "		$1();" >> $1.hpp
-echo "		~$1();" >> $1.hpp
-echo "};" >> $1.hpp
-echo "" >> $1.hpp
+cd includes
+
+cat << EOF > $1.hpp
+#paragma once
+
+class $1
+{
+	public:
+		$1 &operator=(const $1 &src);
+		$1(const $1 &src);
+		$1();
+		~$1();
+};
+
+EOF
 
 cd ..
 cd sources
-touch $1.cpp
 
-echo "#include <$1.hpp>" >> $1.cpp
-echo "" >> $1.cpp
-echo "$1::$1()\n{\n	//Default $1 Constructor\n}\n" >> $1.cpp
-echo "" >> $1.cpp
-echo "$1::$1(const $1 &src)\n{\n	//$1 Copy Constructor\n}\n" >> $1.cpp
-echo "" >> $1.cpp
-echo "$1::~$1()\n{\n	//Default $1 Destructor\n}\n" >> $1.cpp
-echo "" >> $1.cpp
-echo "$1 &$1::operator=(const $1 &src)\n{\n	//$1 Copy Assignment Operator\n}\n" >> $1.cpp
-echo "" >> $1.cpp
+cat << EOF > $1.cpp
+#include <$1.hpp>
+
+$1::$1()
+{
+	//Default $1 Constructor
+}
+
+$1::$1(const $1 &src)
+{
+	//$1 Copy Constructor
+}
+
+$1::~$1()
+{
+	//Default $1 Destructor
+}
+
+$1 &$1::operator=(const $1 &src)
+{
+	//$1 Copy Assignment Operator
+}
+
+EOF
 
 cd ..
