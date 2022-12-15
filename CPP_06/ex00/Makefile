@@ -1,7 +1,7 @@
 NAME = conversor
 
 CXX = c++
-CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -std=c++11
+CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -std=c++98
 RM = rm -f
 
 $(VERBOSE).SILENT:
