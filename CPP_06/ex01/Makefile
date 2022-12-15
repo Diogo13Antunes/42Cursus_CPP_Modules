@@ -1,4 +1,4 @@
-NAME = [PROGRAM NAME]
+NAME = serialize
 
 CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -std=c++98
@@ -12,7 +12,10 @@ SRC_PATH = ./sources
 
 OBJ_PATH = ./objects
 
-SRC_NAME =	[CPP FILES]
+SRC_NAME =	main.cpp		\
+			Data.cpp		\
+			serialize.cpp	\
+			deserialize.cpp
 
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))
 
