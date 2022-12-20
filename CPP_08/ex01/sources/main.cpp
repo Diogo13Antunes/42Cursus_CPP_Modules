@@ -26,16 +26,16 @@ void test_exeptions(void)
 			sp.addNumber(i);
 	}
 	catch(const std::exception& e){
-		std::cout << "Span is already full" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
-
+	
 	// tries to get shortest Span of empty span
 	try{
 		Span sp = Span(5);
 		std::cout << sp.shortestSpan() << std::endl;
 	}
 	catch(const std::exception& e){
-		std::cout << "The Span does not have at least 2 numbers" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	
 	// tries to get longest Span of empty span
@@ -44,8 +44,22 @@ void test_exeptions(void)
 		std::cout << sp.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e){
-		std::cout << "The Span does not have at least 2 numbers" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
+
+	// tries to add more numbers than max capacity
+	try{
+		std::vector<int> v;
+		Span sp = Span(3);
+
+		for (unsigned int i = 0; i < 5; i++)
+			v.push_back(i);
+		sp.addNumbers(v.begin(), v.end());
+	}
+	catch(const std::exception& e){
+		std::cout << e.what() << std::endl;
+	}
+
 }
 
 void test_large_range_numbers()
@@ -56,6 +70,23 @@ void test_large_range_numbers()
 	for (unsigned int i = 0; i < n; i++)
 		sp.addNumber(i);
 
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+}
+
+void test_large_range_numbers1()
+{
+	unsigned int n = 100000; 
+	std::vector<int> v;
+	Span sp = Span(n);
+
+	for (unsigned int i = 3; i < n; i++)
+		v.push_back(i);
+	
+	sp.addNumber(0);
+	sp.addNumber(1);
+	sp.addNumber(2);
+	sp.addNumbers(v.begin(), v.end());
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
 }
@@ -99,6 +130,9 @@ int main(void)
 	std::cout << std::endl;
 	std::cout << "Large range numbers test" << std::endl;
 	test_large_range_numbers();
+	std::cout << std::endl;
+	std::cout << "Large range numbers test" << std::endl;
+	test_large_range_numbers1();
 	std::cout << std::endl;
 	std::cout << "Negative numbers test" << std::endl;
 	test_negatives();
