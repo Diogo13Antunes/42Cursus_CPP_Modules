@@ -26,7 +26,7 @@ void test_exeptions(void)
 			sp.addNumber(i);
 	}
 	catch(const std::exception& e){
-		std::cout << e.what() << std::endl;
+		std::cout << "Span is already full" << std::endl;
 	}
 	
 	// tries to get shortest Span of empty span
@@ -35,7 +35,7 @@ void test_exeptions(void)
 		std::cout << sp.shortestSpan() << std::endl;
 	}
 	catch(const std::exception& e){
-		std::cout << e.what() << std::endl;
+		std::cout << "The Span needs at least 2 integers" << std::endl;
 	}
 	
 	// tries to get longest Span of empty span
@@ -44,7 +44,7 @@ void test_exeptions(void)
 		std::cout << sp.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e){
-		std::cout << e.what() << std::endl;
+		std::cout << "The Span needs at least 2 integers" << std::endl;
 	}
 
 	// tries to add more numbers than max capacity
@@ -57,7 +57,7 @@ void test_exeptions(void)
 		sp.addNumbers(v.begin(), v.end());
 	}
 	catch(const std::exception& e){
-		std::cout << e.what() << std::endl;
+		std::cout << "Impossible to add more numbers" << std::endl;
 	}
 
 }
