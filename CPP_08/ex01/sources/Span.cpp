@@ -34,7 +34,6 @@ void	Span::addNumber(int nbr)
 	if (this->_integers.size() == this->_nbrIntegers)
 		throw std::exception();
 	this->_integers.push_back(nbr);
-	std::cout << "Number added successfully!" << std::endl;
 }
 
 unsigned int Span::shortestSpan(void)
