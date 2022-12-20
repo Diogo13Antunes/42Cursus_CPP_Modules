@@ -36,6 +36,13 @@ void	Span::addNumber(int nbr)
 	this->_integers.push_back(nbr);
 }
 
+void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	if (_integers.size() + std::distance(begin, end) > _nbrIntegers)
+		throw std::exception();
+	_integers.insert(_integers.end(), begin, end);
+}
+
 unsigned int Span::shortestSpan(void)
 {
 	std::vector<int>::iterator	it;
