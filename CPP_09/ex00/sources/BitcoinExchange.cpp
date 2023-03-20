@@ -41,7 +41,7 @@ void	BitcoinExchange::setDataBase(const char *dataBaseFileName)
 	std::string		tempString;
 	std::string		date;
 	std::string		value;
-	std::size_t		index;
+	std::size_t		index = 0;
 
 	file.open(dataBaseFileName, std::ios::in);
 	if (!file.is_open())
@@ -93,13 +93,19 @@ void	BitcoinExchange::exchanger(char *fileName)
 
 void	BitcoinExchange::makeExchange(std::string date, std::string value)
 {
-	float		dateValue;
-	float		amountValue;
-	float		result = 0;
-	std::string	newDate;
-	time_t		timestamp;
+	float			dateValue;
+	float			amountValue;
+	float			result = 0;
+	std::string		newDate;
+	time_t			timestamp;
+	static time_t	minTine = convertStrToTimestamp(this->dataBase.begin()->first);
 
 	timestamp = convertStrToTimestamp(date);
+	if (timestamp < minTine)
+	{
+		std::cerr << "Insuficient data to provide a value." << std::endl;
+		return ;
+	}
 	while (1)
 	{
 		newDate = convertTimestampToString(timestamp);
