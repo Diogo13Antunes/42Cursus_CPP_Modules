@@ -4,6 +4,9 @@
 #include <string>
 #include <map>
 #include <fstream>
+#include <cstdlib>
+#include <ctime>
+#include <sstream>
 
 class BitcoinExchange
 {
@@ -15,8 +18,10 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &src);
 		BitcoinExchange(void);
 		~BitcoinExchange(void);
-	
+
 	private:
+		void	makeExchange(std::string date, std::string value);
+
 		std::string							dataBaseFileName;
 		std::map<std::string, std::string>	dataBase;
 };

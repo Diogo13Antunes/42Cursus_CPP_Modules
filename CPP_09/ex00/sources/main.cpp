@@ -5,7 +5,8 @@ int main(int ac, char **av)
 	(void)av;
 	if (ac == 2)
 	{
-		BitcoinExchange	exchanger;
+		BitcoinExchange	btc;
+		btc.exchanger(av[1]);
 		return (0);
 	}
 	std::cerr << "Invalid Number of Arguments" << std::endl;
