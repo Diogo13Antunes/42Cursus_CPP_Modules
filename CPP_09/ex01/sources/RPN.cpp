@@ -1,9 +1,15 @@
 #include <RPN.hpp>
 
-static void	eraseStringSpaces(std::string *str);
+static bool						isValidData(const char *str);
+static void						eraseStringSpaces(std::string *str);
 static std::list<std::string>	reorganizeStringToInfinNotation(const std::string *str);
-static std::string	getSignals(const std::string *str);
-static std::string	getNumbers(const std::string *str);
+static bool						printErrorMsg(std::string error);
+static std::string				getSignals(const std::string *str);
+static std::string				getNumbers(const std::string *str);
+static bool						isNumber(char c);
+static bool						isSignal(char c);
+
+static void	printList(std::list<std::string> list);
 
 RPN::RPN(void)
 {
@@ -32,17 +38,43 @@ void	RPN::getData(const char *src)
 {
 	std::string	str;
 
-	std::list<std::string>::iterator	it;
-
 	str = src;
 	std::cout << "Input:       \'" << str << "\'" << std::endl;
+	if (!isValidData(src))
+		return ;
 	eraseStringSpaces(&str);
-	std::cout << "No Spaces:   \'" << str << "\'" << std::endl;
 	this->_data = reorganizeStringToInfinNotation(&str);
 	std::cout << "Reorganized: \'";
-	for (it = this->_data.begin(); it != this->_data.end(); it++)
+	printList(this->_data);
+}
+
+static void	printList(std::list<std::string> list)
+{
+	std::list<std::string>::iterator	it;
+
+	for (it = list.begin(); it != list.end(); it++)
 		std::cout << it->data();
 	std::cout << "\'" << std::endl;
+}
+
+static bool	isValidData(const char *str)
+{
+	size_t	amountNumbers = 0;
+	size_t	amountSignals = 0;
+
+	for (size_t i = 0; str[i] != '\0'; i++)
+		if (!isNumber(str[i]) && !isSignal(str[i]) && str[i] != ' ')
+			return (printErrorMsg("Invalid elements in Argument"));
+	for (size_t i = 0; str[i] != '\0'; i++)
+	{
+		if (isNumber(str[i]))
+			amountNumbers += 1;
+		else if (isSignal(str[i]))
+			amountSignals += 1;
+	}
+	if (amountSignals != amountNumbers - 1)
+		return (printErrorMsg("Invalid number of signals and numbers"));
+	return (true);
 }
 
 static void	eraseStringSpaces(std::string *str)
@@ -67,15 +99,6 @@ static std::list<std::string>	reorganizeStringToInfinNotation(const std::string 
 
 	signals = getSignals(str);
 	nbrs = getNumbers(str);
-	std::cout << " ";
-	for (size_t i = 0; i < signals.length(); i++)
-		std::cout << signals[i] << " | ";
-	std::cout << std::endl;
-	std::cout << " ";
-	for (size_t i = 0; i < nbrs.length(); i++)
-		std::cout << nbrs[i] << " | ";
-	std::cout << std::endl;
-
 	for (size_t i = 0; i < nbrs.length(); i++)
 	{
 		temp = nbrs[i];
@@ -135,4 +158,10 @@ static std::string	getNumbers(const std::string *str)
 			numbers += (*str)[i];
 	}
 	return (numbers);
+}
+
+static bool	printErrorMsg(std::string error)
+{
+	std::cerr << "Error: " << error << std::endl;
+	return (false);
 }
