@@ -3,6 +3,7 @@
 #include <list>
 #include <iostream>
 #include <string>
+#include <sstream>
 
 class RPN
 {
