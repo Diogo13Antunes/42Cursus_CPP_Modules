@@ -11,8 +11,8 @@ static bool			isVectorAlreadySorted(std::vector<int> *vec);
 static void			sortVector(std::vector<int> *vec);
 static void			sortDeque(std::deque<int> *deq);
 
-static void			insertionDequeSort(std::deque<int> *deq);
-static void			insertionVectorSort(std::vector<int> *vec);
+static void			insertionDequeSort(std::deque<int> *deq, int begin, int end);
+static void			insertionVectorSort(std::vector<int> *vec, int begin, int end);
 
 PmergeMe::PmergeMe(void)
 {
@@ -67,6 +67,8 @@ void	PmergeMe::setVectorData(void)
 	size_t		i;
 	std::string	temp;
 
+	if (this->_initialData == NULL)
+		return ;
 	this->_vectorData.resize(this->_initialDataSize);
 	for (i = 0; i < this->_vectorData.size(); i++)
 	{
@@ -81,6 +83,8 @@ void	PmergeMe::setDequeData(void)
 	size_t		i;
 	std::string	temp;
 
+	if (this->_initialData == NULL)
+		return ;
 	this->_dequeData.resize(this->_initialDataSize);
 	for (i = 0; i < this->_dequeData.size(); i++)
 	{
@@ -132,20 +136,20 @@ void	PmergeMe::sort(void)
 
 static void	sortVector(std::vector<int> *vec)
 {
-	insertionVectorSort(vec);
+	insertionVectorSort(vec, 1, vec->size() - 1);
 }
 
 static void	sortDeque(std::deque<int> *deq)
 {
-	insertionDequeSort(deq);
+	insertionDequeSort(deq, 1, deq->size() - 1);
 }
 
-static void	insertionVectorSort(std::vector<int> *vec)
+static void	insertionVectorSort(std::vector<int> *vec, int begin, int end)
 {
 	int	key = 0;
 	int	j = 0;
-	int	len = vec->size();
-	for (int i = 1; i < len; i++)
+
+	for (int i = begin; i <= end; i++)
 	{
 		key = (*vec)[i];
 		j = i - 1;
@@ -158,12 +162,12 @@ static void	insertionVectorSort(std::vector<int> *vec)
 	}
 }
 
-static void	insertionDequeSort(std::deque<int> *deq)
+static void	insertionDequeSort(std::deque<int> *deq, int begin, int end)
 {
 	int	key = 0;
 	int	j = 0;
-	int	len = deq->size();
-	for (int i = 1; i < len; i++)
+
+	for (int i = begin; i <= end; i++)
 	{
 		key = (*deq)[i];
 		j = i - 1;
@@ -177,13 +181,39 @@ static void	insertionDequeSort(std::deque<int> *deq)
 }
 
 static bool	onlyHaveDigits(char *str);
+static bool	existDuplicates(char **data);
 
 static bool	isValidData(char **data)
 {
 	for (size_t	i = 1; data[i]; i++)
+	{
 		if (!onlyHaveDigits(data[i]))
 			return (printErrorMsg("Ivalid provided Argumenta"));
+	}
+	if (existDuplicates(data))
+		return (printErrorMsg("Duplicated numbers"));
 	return (true);
+}
+
+static bool	existDuplicates(char **data)
+{
+	std::string	value;
+	size_t		count = 0;
+
+	for (size_t i = 1; data[i]; i++)
+	{
+		count = 0;
+		value = data[i];
+		for (size_t a = i + 1; data[a]; a++)
+		{
+			if (value.compare(data[a]) == 0)
+				count++;
+		}
+		if (count != 0)
+			return (true);
+		value.clear();
+	}
+	return (false);
 }
 
 static bool	onlyHaveDigits(char *str)
