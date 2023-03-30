@@ -4,7 +4,7 @@ CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -std=c++98
 RM = rm -f
 
-#$(VERBOSE).SILENT:
+$(VERBOSE).SILENT:
 
 INC = -I ./includes
 

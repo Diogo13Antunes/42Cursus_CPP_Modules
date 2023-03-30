@@ -4,7 +4,6 @@
 static bool			isValidData(char **data);
 static bool			printErrorMsg(const char *error);
 static int			strToInt(std::string str);
-static std::string	intToStr(int nbr);
 static bool			isDequeAlreadySorted(std::deque<int> *deq);
 static bool			isVectorAlreadySorted(std::vector<int> *vec);
 
@@ -14,6 +13,11 @@ static void			sortDeque(std::deque<int> *deq);
 static void			insertionDequeSort(std::deque<int> *deq, int begin, int end);
 static void			insertionVectorSort(std::vector<int> *vec, int begin, int end);
 
+static void			mergeVectorSort(std::vector<int> *vec, int begin, int mid, int end);
+static void			mergeDequeSort(std::deque<int> *deq, int begin, int mid, int end);
+
+static double		getDuration(clock_t begin, clock_t end);
+
 PmergeMe::PmergeMe(void)
 {
 	//Default PmergeMe Constructor
@@ -22,12 +26,14 @@ PmergeMe::PmergeMe(void)
 PmergeMe::PmergeMe(char **args, int amountNbrs)
 {
 	//With Values PmergeMe Constructor
+	this->_beginSetArguments = clock();
 	this->_initialData = NULL;
 	this->setArguments(args);
 	this->_initialDataSize = amountNbrs;
 	this->setVectorData();
 	this->setDequeData();
-	(void)intToStr(13);
+	this->_endSetArguments = clock();
+	this->_durationSetArguments = getDuration(this->_beginSetArguments, this->_endSetArguments);
 }
 
 PmergeMe::PmergeMe(const PmergeMe &src)
@@ -54,12 +60,7 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &src)
 void	PmergeMe::setArguments(char **args)
 {
 	if (isValidData(args))
-	{
 		this->_initialData = args;
-		for (int i = 1; this->_initialData[i] != NULL; i++)
-			std::cout << " [" << this->_initialData[i] << "]";
-		std::cout << std::endl;
-	}
 }
 
 void	PmergeMe::setVectorData(void)
@@ -102,7 +103,7 @@ void	PmergeMe::printVectorData(void)
 		return ;
 	}
 	for (size_t i = 0; i < this->_vectorData.size(); i++)
-		std::cout << "[" << this->_vectorData[i] << "] ";
+		std::cout << this->_vectorData[i] << " ";
 	std::cout << std::endl;
 }
 
@@ -114,34 +115,80 @@ void	PmergeMe::printDequeData(void)
 		return ;
 	}
 	for (size_t i = 0; i < this->_dequeData.size(); i++)
-		std::cout << "[" << this->_dequeData[i] << "] ";
+		std::cout << this->_dequeData[i] << " ";
 	std::cout << std::endl;
 }
 
 void	PmergeMe::sort(void)
 {
+	this->_beginVector = clock();
 	if (this->_vectorData.size() <= 0)
 		printErrorMsg("Impossible to sort Vector is Empty");
 	else if (isVectorAlreadySorted(&(this->_vectorData)))
 		printErrorMsg("Impossible to sort Vector is already Sorted");
 	else
 		sortVector(&(this->_vectorData));
+	this->_endVector = clock();
+	this->_durationVector = getDuration(this->_beginVector, this->_endVector);
+	this->_beginDeque = clock();
 	if (this->_dequeData.size() <= 0)
 		printErrorMsg("Impossible to sort Deque is Empty");
 	else if (isDequeAlreadySorted(&(this->_dequeData)))
 		printErrorMsg("Impossible to sort Deque is already Sorted");
 	else
 		sortDeque(&(this->_dequeData));
+	this->_endDeque = clock();
+	this->_durationDeque = getDuration(this->_beginDeque, this->_endDeque);
+}
+
+void	PmergeMe::printTimes(void)
+{
+	std::cout << "Vector Time: " << this->_durationSetArguments + this->_durationVector << " seconds" << std::endl;
+	std::cout << "Deque Time:  " << this->_durationSetArguments + this->_durationDeque << " seconds" << std::endl;
 }
 
 static void	sortVector(std::vector<int> *vec)
 {
-	insertionVectorSort(vec, 1, vec->size() - 1);
+	size_t	n = vec->size();
+	size_t	begin;
+	size_t	mid;
+	size_t	end;
+
+	for (size_t i = 1; i < n; i += DIV)
+		insertionVectorSort(vec, i, std::min((i + DIV - 1), (n - 1)));
+
+	for (size_t size = DIV; size < n; size *= 2)
+	{
+		for (begin = 1; begin < n; begin *= 2)
+		{
+			mid = begin + size - 1;
+			end = std::min((begin + size * 2 - 1), (n - 1));
+			if (mid < end)
+				mergeVectorSort(vec, begin, mid, end);
+		}
+	}
 }
 
 static void	sortDeque(std::deque<int> *deq)
 {
-	insertionDequeSort(deq, 1, deq->size() - 1);
+	size_t	n = deq->size();
+	size_t	begin;
+	size_t	mid;
+	size_t	end;
+
+	for (size_t i = 1; i < n; i += DIV)
+		insertionDequeSort(deq, i, std::min((i + DIV - 1), (n - 1)));
+
+	for (size_t size = DIV; size < n; size *= 2)
+	{
+		for (begin = 1; begin < n; begin *= 2)
+		{
+			mid = begin + size - 1;
+			end = std::min((begin + size * 2 - 1), (n - 1));
+			if (mid < end)
+				mergeDequeSort(deq, begin, mid, end);
+		}
+	}
 }
 
 static void	insertionVectorSort(std::vector<int> *vec, int begin, int end)
@@ -177,6 +224,78 @@ static void	insertionDequeSort(std::deque<int> *deq, int begin, int end)
 			j--;
 		}
 		(*deq)[j + 1] = key;
+	}
+}
+
+static void	mergeVectorSort(std::vector<int> *vec, int begin, int mid, int end)
+{
+	std::vector<int>	left((*vec).begin() + begin, (*vec).begin() + mid);
+	std::vector<int>	right((*vec).begin() + mid, (*vec).begin() + end);
+	size_t				i = 0;
+	size_t				j = 0;
+	size_t				k = begin;
+
+	while (i < left.size() && j < right.size())
+	{
+		if (left[i] <= right[j])
+		{
+			(*vec)[k] = left[i];
+			i++;
+		}
+		else
+		{
+			(*vec)[k] = right[j];
+			j++;
+		}
+		k++;
+	}
+	while (i < left.size())
+	{
+		(*vec)[k] = left[i];
+		k++;
+		i++;
+	}
+	while (j < right.size())
+	{
+		(*vec)[k] = right[j];
+		k++;
+		j++;
+	}
+}
+
+static void	mergeDequeSort(std::deque<int> *deq, int begin, int mid, int end)
+{
+	std::deque<int>		left((*deq).begin() + begin, (*deq).begin() + mid);
+	std::deque<int>		right((*deq).begin() + mid, (*deq).begin() + end);
+	size_t				i = 0;
+	size_t				j = 0;
+	size_t				k = begin;
+
+	while (i < left.size() && j < right.size())
+	{
+		if (left[i] <= right[j])
+		{
+			(*deq)[k] = left[i];
+			i++;
+		}
+		else
+		{
+			(*deq)[k] = right[j];
+			j++;
+		}
+		k++;
+	}
+	while (i < left.size())
+	{
+		(*deq)[k] = left[i];
+		k++;
+		i++;
+	}
+	while (j < right.size())
+	{
+		(*deq)[k] = right[j];
+		k++;
+		j++;
 	}
 }
 
@@ -242,16 +361,6 @@ static int	strToInt(std::string str)
 	return (nbr);
 }
 
-static std::string	intToStr(int nbr)
-{
-	std::stringstream	oss;
-	std::string			str;
-
-	oss << nbr;
-	oss >> str;
-	return (str);
-}
-
 static bool	isVectorAlreadySorted(std::vector<int> *vec)
 {
 	for (size_t i = 0; i < (*vec).size() - 1; i++)
@@ -270,4 +379,9 @@ static bool	isDequeAlreadySorted(std::deque<int> *deq)
 			return (false);
 	}
 	return (true);
+}
+
+static double	getDuration(clock_t begin, clock_t end)
+{
+	return ((double)(end - begin) / CLOCKS_PER_SEC);
 }

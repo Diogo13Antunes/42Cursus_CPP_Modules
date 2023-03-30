@@ -5,6 +5,9 @@
 #include <vector>
 #include <deque>
 #include <sstream>
+#include <ctime>
+
+#define DIV	32
 
 class PmergeMe
 {
@@ -15,6 +18,8 @@ class PmergeMe
 		void	printDequeData(void);
 
 		void	sort(void);
+
+		void	printTimes(void);
 
 		PmergeMe &operator=(const PmergeMe &src);
 		PmergeMe(const PmergeMe &src);
@@ -28,6 +33,18 @@ class PmergeMe
 		std::vector<int>	_vectorData;
 		std::deque<int>		_dequeData;
 
-		void	setDequeData(void);
-		void	setVectorData(void);
+		clock_t				_beginSetArguments;
+		clock_t				_endSetArguments;
+		double				_durationSetArguments;
+
+		clock_t				_beginVector;
+		clock_t				_endVector;
+		double				_durationVector;
+
+		clock_t				_beginDeque;
+		clock_t				_endDeque;
+		double				_durationDeque;
+
+		void				setDequeData(void);
+		void				setVectorData(void);
 };
