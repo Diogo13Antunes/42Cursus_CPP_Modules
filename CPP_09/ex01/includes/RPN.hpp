@@ -1,6 +1,6 @@
 #pragma once
 
-#include <list>
+#include <stack>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -13,8 +13,5 @@ class RPN
 		RPN &operator=(const RPN &src);
 		RPN(const RPN &src);
 		RPN(void);
-		~RPN(void);
-	
-	private:
-		std::list<std::string>	_data;
+		~RPN(void);	
 };
