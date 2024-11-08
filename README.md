@@ -1,7 +1,5 @@
 # 42Cursus_CPP_Modules
 
-# 42Cursus-cpp-modules
-
 This project is an integral part of the 42Lisboa curriculum and aims to develop multiple projects in C++ with the objective of learning about the language and the object-oriented paradigm.
 
 ## Modules
