@@ -39,3 +39,13 @@ Run the executable:
 ```shell
 ./megaphone
 ```
+
+## Extra
+
+To simplify the creation of a C++ module, I created a script called `create_setup.sh`. This script requires both the `create_setup.sh` script itself and the `base_setup_cpp` folder.
+
+### Usage
+
+```shell
+./create_setup.sh [dir_name] [class_name]
+```
